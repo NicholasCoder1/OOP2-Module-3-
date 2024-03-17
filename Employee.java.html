@@ -20,6 +20,8 @@ Employee.java</font>
 <span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileWriter</span><span class="s2">;</span>
 <span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
 
+<span class="s0">import static </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalTime</span><span class="s2">.</span><span class="s1">now</span><span class="s2">;</span>
+
 <span class="s0">public class </span><span class="s1">Employee </span><span class="s0">implements </span><span class="s1">Payable </span><span class="s2">{</span>
     <span class="s0">private </span><span class="s1">String firstName</span><span class="s2">;</span>
     <span class="s0">private </span><span class="s1">String lastName</span><span class="s2">;</span>
@@ -67,28 +69,30 @@ Employee.java</font>
     <span class="s1">@Override</span>
     <span class="s0">public void </span><span class="s1">writetoFile</span><span class="s2">() {</span>
 
-    <span class="s2">{</span>
             <span class="s0">try </span><span class="s2">{</span>
                 <span class="s1">File myObj </span><span class="s2">= </span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s3">&quot;Paystub.txt&quot;</span><span class="s2">);</span>
-                <span class="s0">if </span><span class="s2">(</span><span class="s1">myObj</span><span class="s2">.</span><span class="s1">createNewFile</span><span class="s2">())</span>
-                    <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;File has been created: &quot; </span><span class="s2">+ </span><span class="s1">myObj</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">());</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">myObj</span><span class="s2">.</span><span class="s1">createNewFile</span><span class="s2">()) </span><span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;File has been created: &quot; </span><span class="s2">+ </span><span class="s1">myObj</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">());</span>
                 <span class="s1">FileWriter myWriter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FileWriter</span><span class="s2">(</span><span class="s3">&quot;Paystub.txt&quot;</span><span class="s2">,</span><span class="s0">true</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;....... &quot; </span><span class="s2">+</span><span class="s3">&quot;Employee&quot;</span><span class="s2">+ </span><span class="s3">&quot;.........&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
-
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;First Name: </span><span class="s0">\t\t</span><span class="s3">&quot; </span><span class="s2">+ </span><span class="s1">getFirstName</span><span class="s2">());</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;Last Name: </span><span class="s0">\t\t</span><span class="s3">&quot; </span><span class="s2">+ </span><span class="s1">getLastName</span><span class="s2">());</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;Social Security Number: </span><span class="s0">\t\t</span><span class="s3">&quot; </span><span class="s2">+ </span><span class="s1">getSocialSecurityNumber</span><span class="s2">());</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s3">&quot;Date of Payment: &quot; </span><span class="s2">+ </span><span class="s1">now</span><span class="s2">());</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
 
             <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Error writing to file: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+                <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;An unexpected error occurred: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
                 <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
             <span class="s2">}</span>
-
     <span class="s2">}</span>
-<span class="s2">}}</span>
+<span class="s2">}</span>
 
 </pre>
 </body>

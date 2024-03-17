@@ -19,6 +19,9 @@ SalariedEmployee.java</font>
 <pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
 <span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileWriter</span><span class="s2">;</span>
 <span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalTime</span><span class="s2">.</span><span class="s1">now</span><span class="s2">;</span>
+
 <span class="s0">public class </span><span class="s1">SalariedEmployee </span><span class="s0">extends </span><span class="s1">Employee </span><span class="s0">implements  </span><span class="s1">Payable</span><span class="s2">{</span>
 
     <span class="s0">private double </span><span class="s1">weeklySalary</span><span class="s2">;</span>
@@ -53,12 +56,23 @@ SalariedEmployee.java</font>
                 <span class="s1">FileWriter myWriter </span><span class="s2">= </span><span class="s0">new </span><span class="s1">FileWriter</span><span class="s2">(</span><span class="s4">&quot;Paystub.txt&quot;</span><span class="s2">, </span><span class="s0">true</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;....... &quot; </span><span class="s2">+ </span><span class="s4">&quot;SalariedEmployee&quot; </span><span class="s2">+ </span><span class="s4">&quot;.........&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;First Name: </span><span class="s0">\t\t</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">getFirstName</span><span class="s2">());</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;Last Name: </span><span class="s0">\t\t</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">getLastName</span><span class="s2">());</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;Social Security Number: </span><span class="s0">\t\t</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">getSocialSecurityNumber</span><span class="s2">());</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;Week Salary:</span><span class="s0">\t\t</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">getWeeklySalary</span><span class="s2">());</span>
                 <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">write</span><span class="s2">(</span><span class="s4">&quot;Date of Payment: &quot; </span><span class="s2">+ </span><span class="s1">now</span><span class="s2">());</span>
+                <span class="s1">myWriter</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
 
 
             <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Error writing to file: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+                <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;An unexpected error occurred: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
                 <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
             <span class="s2">}</span>
         <span class="s2">}</span>
